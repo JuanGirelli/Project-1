@@ -5,11 +5,6 @@ const taskParent = document.querySelector('#to-Do');
 
 
 let taskArray = [];
-for (let i = 0; i < 10; i++)
-{
-    taskArray.push(taskParent.children[i]);
-}
-console.log(taskArray);
 
 
 let timeFirst = 0;
@@ -41,7 +36,7 @@ function alternateTimer() {
     if (!timerRunning)
         {
             timer();
-            timerRunning = true;         
+            timerRunning = true;       
         }
         else
         {
@@ -51,9 +46,16 @@ function alternateTimer() {
 }
 
 function addTask() {
-    const task = document.createElement('li');
+    let task = document.createElement('li');
+    task.classList.add('miniTask');
     task.textContent = 'Task #';
     taskParent.appendChild(task);
+    checkTasks();
+}
+
+function checkTasks() {
+    taskArray = taskParent.querySelectorAll('li');
+    console.log(taskArray);
 }
 
 addTaskButton.addEventListener('click', addTask);
