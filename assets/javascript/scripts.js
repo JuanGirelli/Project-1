@@ -46,9 +46,12 @@ function alternateTimer() {
 }
 
 function addTask() {
-    let task = document.createElement('li');
-    task.classList.add('miniTask');
-    task.textContent = 'Task #';
+
+    const addTask = prompt("Add Task");
+    task = document.createElement('li');
+    task.textContent = addTask;
+    task.setAttribute("type", "button");
+    task.classList.add("miniTask");
     taskParent.appendChild(task);
     checkTasks();
 }
