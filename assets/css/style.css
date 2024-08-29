@@ -11,6 +11,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif
   }
 
 body {
@@ -69,7 +70,7 @@ nav a:hover {
 main {
     display: flex;
     flex-direction: row;
-    padding: 1%;
+    padding: 4%;
     background-color: var();
   }
 
@@ -81,6 +82,8 @@ main {
     margin: 1%;
     border: 2px solid var(--color-quinary);
     border-radius: 5px;
+    box-shadow: 5px 10px grey;
+
 }
 
 #task button, #time button  {
@@ -122,3 +125,14 @@ main {
     margin-top: auto;
     position: relative;
     }
+    ul {
+      list-style-type: none;
+      position: relative;
+      right: 10px;
+    }
+
+    .miniTask:hover {
+      color: var(--color-primary);
+      background-color: #fff;
+  }
+    
