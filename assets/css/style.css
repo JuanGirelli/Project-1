@@ -120,5 +120,5 @@ main {
     background: var(--color-primary);
     color: #fff;
     margin-top: auto;
-    position: fixed;
+    position: relative;
     }
