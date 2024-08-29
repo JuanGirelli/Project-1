@@ -51,9 +51,16 @@ function alternateTimer() {
 }
 
 function addTask() {
-    const task = document.createElement('li');
+    let task = document.createElement('li');
+    task.classList.add('miniTask');
     task.textContent = 'Task #';
     taskParent.appendChild(task);
+    checkTasks();
+}
+
+function checkTasks() {
+    taskArray = taskParent.querySelectorAll('li');
+    console.log(taskArray);
 }
 
 addTaskButton.addEventListener('click', addTask);
