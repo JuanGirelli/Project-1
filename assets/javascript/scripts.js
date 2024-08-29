@@ -1,8 +1,16 @@
 const clockEl = document.querySelector('#clock');
-const timerButton = document.querySelector('button');
+const addTaskButton = document.querySelector('#add-Task');
+const timerButton = document.querySelector('#timer-Button');
+const taskParent = document.querySelector('#to-Do');
 
-console.log(timerButton.textContent);
-console.log(clockEl.textContent);
+
+let taskArray = [];
+for (let i = 0; i < 10; i++)
+{
+    taskArray.push(taskParent.children[i]);
+}
+console.log(taskArray);
+
 
 let timeFirst = 0;
 let timeSecond = 0;
@@ -28,14 +36,10 @@ function timer() { timerInstance = setInterval(function () {
 }, 1000);
 }
 
-//clearInterval(timerInterval);
-
-
 function alternateTimer() {
     
     if (!timerRunning)
         {
-            //timerInstance = timer();
             timer();
             timerRunning = true;         
         }
@@ -46,4 +50,11 @@ function alternateTimer() {
         }
 }
 
+function addTask() {
+    const task = document.createElement('li');
+    task.textContent = 'Task #';
+    taskParent.appendChild(task);
+}
+
+addTaskButton.addEventListener('click', addTask);
 timerButton.addEventListener('click', alternateTimer);
