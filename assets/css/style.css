@@ -74,16 +74,15 @@ main {
     background-color: var();
   }
 
-  div {
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1%;
-    margin: 1%;
+    margin: 10px;
     border: 2px solid var(--color-quinary);
     border-radius: 5px;
-    box-shadow: 5px 10px grey;
-
+    box-shadow: 5px 6px grey;
 }
 
 #task button, #time button  {
@@ -101,12 +100,17 @@ main {
     background-color: #fff;
     color: var(--color-quinary);
 }
+
 .aside {
     display: flex;
     flex-direction: column;
     width: 50%;
    
 }
+#clock {
+    box-shadow: none;
+  }
+
 .tasks {
     display: flex;
     flex-direction: column;
@@ -115,7 +119,19 @@ main {
     border-radius: 5px;
    
   }
-  footer {
+
+.miniTask:hover {
+    color: var(--color-primary);
+    background-color: #fff;
+}
+
+ul {
+    list-style-type: none;
+    position: relative;
+    right: 10px;
+  }
+
+footer {
     width: 100%;
     bottom: 0;
     padding: 20px;
@@ -125,14 +141,7 @@ main {
     margin-top: auto;
     position: relative;
     }
-    ul {
-      list-style-type: none;
-      position: relative;
-      right: 10px;
-    }
+    
 
-    .miniTask:hover {
-      color: var(--color-primary);
-      background-color: #fff;
-  }
+
     
