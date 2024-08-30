@@ -5,31 +5,25 @@ const timerButton = document.querySelector('#timer-Button');
 const taskParent = document.querySelector('#to-Do');
 const resetTimer = document.querySelector('#timer-Reset')
 
-
-let taskArray = [];
-
-
-let timeFirst = 0;
-let timeSecond = 0;
-let timeThird = 0;
+let selectedTask;
 
 let timerRunning = false;
 
 let timerInstance;
 
-function timer() { timerInstance = setInterval(function () {
-    timeFirst++;
-    if (timeFirst == 10)
+function timer(object) { timerInstance = setInterval(function () {
+    selectedTask.time1++;
+    if (selectedTask.time1 == 10)
     {
-        timeFirst = 0;
-        timeSecond++;
-        if (timeSecond == 6)
+        selectedTask.time2 = 0;
+        selectedTask.time2++;
+        if (selectedTask.time2 == 6)
         {
-            timeSecond = 0;
-            timeThird++;
+            selectedTask.time2 = 0;
+            selectedTask.time3++;
         }
     }      
-    clockEl.textContent = timeThird + ':' + timeSecond + timeFirst;     
+    clockEl.textContent = selectedTask.time3 + ':' + selectedTask.time2 + selectedTask.time1;     
 }, 1000);
 }
 
@@ -47,6 +41,7 @@ function alternateTimer() {
         }
 }
 
+
 function resetTime(){
     
     clearInterval(timerInstance); 
@@ -60,11 +55,15 @@ function resetTime(){
 function addTask() {
 
     const addTask = prompt("Add Task");
-    task = document.createElement('li');
-    task.textContent = addTask;
-    task.setAttribute("type", "button");
-    task.classList.add("miniTask");
-    taskParent.appendChild(task);
+    taskElement = document.createElement('li');
+    taskElement.textContent = addTask;
+    taskElement.setAttribute("type", "button");
+    taskElement.classList.add("miniTask");
+    taskParent.appendChild(taskElement);
+
+    taskElement.addEventListener('click', function () {
+    selectTask(taskObject)});
+
     checkTasks();
 }
 
@@ -73,8 +72,13 @@ function removeTask(){
 }
 
 function checkTasks() {
-    taskArray = taskParent.querySelectorAll('li');
-    console.log(taskArray);
+    task = taskParent.querySelectorAll('li');
+    console.log(task);
+}
+
+function selectTask(taskObject) {
+    selectedTask = taskObject;
+    console.log(taskObject.time3 + ':' + taskObject.time2 + '' + taskObject.time1);
 }
 
 addTaskButton.addEventListener('click', addTask);
