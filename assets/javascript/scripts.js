@@ -1,5 +1,6 @@
 const clockEl = document.querySelector('#clock');
 const addTaskButton = document.querySelector('#add-Task');
+const removeTaskButton = document.querySelector('#remove-Task');
 const timerButton = document.querySelector('#timer-Button');
 const taskParent = document.querySelector('#to-Do');
 const resetTimer = document.querySelector('#timer-Reset')
@@ -47,6 +48,7 @@ function alternateTimer() {
 }
 
 function resetTime(){
+    
     clearInterval(timerInstance); 
     timeFirst = 0;
     timeSecond = 0;
@@ -66,11 +68,16 @@ function addTask() {
     checkTasks();
 }
 
+function removeTask(){
+    task.remove();
+}
+
 function checkTasks() {
     taskArray = taskParent.querySelectorAll('li');
     console.log(taskArray);
 }
 
 addTaskButton.addEventListener('click', addTask);
+removeTaskButton.addEventListener('click', removeTask);
 timerButton.addEventListener('click', alternateTimer);
 resetTimer.addEventListener('click', resetTime);
