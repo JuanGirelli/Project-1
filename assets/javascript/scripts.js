@@ -42,7 +42,7 @@ function alternateTimer() {
 }
 
 
-function resetTime(){
+/*function resetTime(){
     
     clearInterval(timerInstance); 
     timeFirst = 0;
@@ -50,9 +50,16 @@ function resetTime(){
     timeThird = 0;
     timerRunning = false;
     clockEl.textContent = "0:00";
-}
+}*/
 
 function addTask() {
+
+    let taskObject = {
+        taskName: '',
+        time1: 0,
+        time2: 0,
+        time3: 0
+    };
 
     const addTask = prompt("Add Task");
     taskElement = document.createElement('li');
@@ -78,10 +85,11 @@ function checkTasks() {
 
 function selectTask(taskObject) {
     selectedTask = taskObject;
-    console.log(taskObject.time3 + ':' + taskObject.time2 + '' + taskObject.time1);
+    clockEl.textContent = selectedTask.time3 + ':' + selectedTask.time2 + selectedTask.time1;
+    //console.log(taskObject.time3 + ':' + taskObject.time2 + '' + taskObject.time1);
 }
 
 addTaskButton.addEventListener('click', addTask);
 removeTaskButton.addEventListener('click', removeTask);
 timerButton.addEventListener('click', alternateTimer);
-resetTimer.addEventListener('click', resetTime);
+//resetTimer.addEventListener('click', resetTime);
