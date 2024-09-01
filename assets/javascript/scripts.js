@@ -5,7 +5,7 @@ const timerButton = document.querySelector('#timer-Button');
 const taskParent = document.querySelector('#to-Do');
 const resetTimer = document.querySelector('#timer-Reset')
 
-//loadAllTasks();
+
 rendTask();
 
 let selectedTask;
@@ -44,7 +44,7 @@ function alternateTimer() {
         }
 }
 
-
+// assign the selectedTask's time values to zero and update the clock element
 function resetTime(){
     clearInterval(timerInstance); 
     timerRunning = false;
@@ -64,19 +64,13 @@ function addTask() {
         time2: 0,
         time3: 0
     };
+    taskElement = document.createElement('li');
 
     const addTaskInput = prompt("Add Task");
     taskElement.textContent = addTaskInput;
     taskObject.taskName = addTaskInput;
 
-    /*taskElement.setAttribute("type", "button");
-    taskElement.classList.add("miniTask");
-
-    taskParent.appendChild(taskElement);
-
-    taskElement.addEventListener('click', function () {
-    selectTask(taskObject, taskElement)});*/
-    createTask(taskObject);
+    createTask(taskObject, taskElement);
 
     let existingData = localStorage.getItem('allTasks');
     let taskData;
@@ -95,9 +89,16 @@ function addTask() {
     localStorage.setItem('allTasks', JSON.stringify(taskData));
 }
 
-/*function removeTask(){
-    task.remove();
-}*/
+// removes the last task from the list of tasks and updates local storage
+function removeTask(){
+    if (taskParent.lastChild != null)
+    {
+        let tasks = JSON.parse(localStorage.getItem("allTasks"));
+        tasks.pop();
+        localStorage.setItem('allTasks', JSON.stringify(tasks));
+        taskParent.removeChild(taskParent.lastChild);
+    }
+}
 
 // checks how many tasks there are and removes their selected task class, only called once a task is selected
 function clearSelectedTask() {
@@ -144,34 +145,29 @@ function rendTask() {
     let tasks = loadAllTasks();
     for (let i = 0; i < tasks.length; i++)
     {
-        /*taskElement = document.createElement('li');
-        taskElement.textContent = tasks[i].taskName;
-        
-        taskElement.setAttribute("type", "button");
-        taskElement.classList.add("miniTask");
-        taskParent.appendChild(taskElement);
-
-        taskElement.addEventListener('click', function () {
-        selectTask(tasks[i], taskElement)});*/
         createTask(tasks[i]);
     }
 }
 
 // physically creates the task element
-function createTask(object) {
-    taskElement = document.createElement('li');
-    taskElement.textContent = object.taskName;
+function createTask(object, _taskElement) {
+    if (_taskElement == null)
+    {
+        _taskElement = document.createElement('li');
+    }
+    _taskElement = document.createElement('li');
+    _taskElement.textContent = object.taskName;
     
-    taskElement.setAttribute("type", "button");
-    taskElement.classList.add("miniTask");
-    taskParent.appendChild(taskElement);
+    _taskElement.setAttribute("type", "button");
+    _taskElement.classList.add("miniTask");
+    taskParent.appendChild(_taskElement);
 
-    taskElement.addEventListener('click', function () {
-    selectTask(object, taskElement)});
+    _taskElement.addEventListener('click', function () {
+    selectTask(object, _taskElement)});
 }
 
 addTaskButton.addEventListener('click', addTask);
 timerButton.addEventListener('click', alternateTimer);
 resetTimer.addEventListener('click', resetTime);
-//removeTaskButton.addEventListener('click', removeTask);
+removeTaskButton.addEventListener('click', removeTask);
 
