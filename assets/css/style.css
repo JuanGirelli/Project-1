@@ -161,11 +161,11 @@ justify-content: space-evenly;
 }
 
 .selected-Task {
-border: 2px solid var(--color-primary); /* Adds a border */
-background-color: var(--color-secondary); /* Changes the background color */
-color: #fff; /* Changes the text color */
-padding: 5px; /* Adds padding for better visibility */
-transition: background-color 0.3s, border 0.3s; /* Adds a smooth transition effect */
+  border: 2px solid var(--color-primary); /* Adds a border */
+  background-color: var(--color-secondary); /* Changes the background color */
+  color: #fff; /* Changes the text color */
+  padding: 5px; /* Adds padding for better visibility */
+  transition: background-color 0.3s, border 0.3s; /* Adds a smooth transition effect */
 }
 
 ol {
