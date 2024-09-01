@@ -1,7 +1,7 @@
 # Task Manager
 
 ## Table of Contents
-- 
+
 - [Overview](#Overview)
 - [User Story](#User_Story)
 - [Acceptance Criteria](Acceptance-Criteria)
