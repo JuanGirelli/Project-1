@@ -4,8 +4,8 @@
 
 - [Overview](#Overview)
 - [User Story](#User_Story)
-- [Acceptance Criteria](Acceptance-Criteria)
-- [Features](Features)
+- [Acceptance Criteria](#Acceptance-Criteria)
+- [Features](#Features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
