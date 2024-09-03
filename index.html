@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+
 <body>
     <!-- changed the nav and added a paragraph -->
     <header>
@@ -39,16 +40,35 @@
                     <button id="timer-Reset" type="button" class="btn btn-primary">Reset</button>
                 </div>
             </div>
-            <div id="task">
+            <div>
+                <h2>Completed Tasks</h2>
+                <div>
+                    <ol id="completed"></ol>
+
+                </div>
+            </div>
+        <!-- <div id="task">
                 <button id="add-Task">Add Task</button>
                 <button id="remove-Task">Remove Task</button>
-            </div>
+            </div> -->
         </section>
         <section class="tasks">
             <div>
                 <h2>Task List</h2>
+                <div id = "task">
+                    <input type="text" id="task-Input" placeholder="Enter Task"></input>
+                    <button id="add-Task">Add Task</button>
+                </div>
+                <div >
+                    <ol type="1" id="to-Do"></ol>  
+
+                     
+                </div>
+           <!-- <div>
+                <h2>Completed Tasks</h2>
                 <div>
-                    <ol id="to-Do"></ol>
+                    <ol id="completed"></ol>--> 
+
                 </div>
             </div>
         </section>
