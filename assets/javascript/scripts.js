@@ -3,10 +3,12 @@ const addTaskButton = document.querySelector('#add-Task');
 const removeTaskButton = document.querySelector('#remove-Task');
 const timerButton = document.querySelector('#timer-Button');
 const taskParent = document.querySelector('#to-Do');
-const resetTimer = document.querySelector('#timer-Reset')
+const resetTimer = document.querySelector('#timer-Reset');
+const inputField = document.querySelector('#task-Input');
 
 
-rendTask();
+renderActiveTask();
+renderCompletedTasks();
 
 let selectedTask;
 
@@ -84,9 +86,18 @@ function addTask() {
     };
     taskElement = document.createElement('li');
 
-    const addTaskInput = prompt("Add Task");
-    taskElement.textContent = addTaskInput;
-    taskObject.taskName = addTaskInput;
+    if (inputField.value != '')
+    {
+        taskElement.textContent = inputField.value;
+        taskObject.taskName = inputField.value;
+        inputField.value = '';
+    }
+    else
+    {
+        alert('Please enter a task');
+        return;
+    }
+
 
     createTask(taskObject, taskElement);
 
@@ -107,7 +118,11 @@ function addTask() {
     localStorage.setItem('allTasks', JSON.stringify(taskData));
 }
 
-// removes the last task from the list of tasks and updates local storage
+function refreshStorage() {
+
+}
+
+/*// removes the last task from the list of tasks and updates local storage
 function removeLastTask(){
     if (taskParent.lastChild != null)
     {
@@ -130,7 +145,7 @@ function removeLastTask(){
 }
 
 // removes the selected task from the list of tasks and updates local storage
-/*function removeSelectedTask() {
+function removeSelectedTask() {
     if (selectedTask != null)
     {
         let tasks = JSON.parse(localStorage.getItem("allTasks"));
@@ -156,29 +171,31 @@ function removeLastTask(){
 
 // checks how many tasks there are and removes their selected task class, only called once a task is selected
 function clearSelectedTask() {
-    task = taskParent.querySelectorAll('li');
-    for (let i = 0; i < task.length; i++) 
+    tasks = taskParent.querySelectorAll('li');
+    for (let i = 0; i < tasks.length; i++) 
     {
-        if (task[i].classList.contains('selected-Task'))
+        if (tasks[i].classList.contains('selected-Task'))
         {
-            task[i].classList.remove('selected-Task');
+            tasks[i].classList.remove('selected-Task');
+            tasks[i].querySelector('.remove-btn').style.display = 'none'; // Hide the remove button
+            tasks[i].querySelector('.done-btn').style.display = 'none'; // Hide the done button
         }
     }
 }
 
 // sets the selected task to the task that was clicked, updates timer accordingly
 function selectTask(_taskObject, _taskElement) {
-    clearSelectedTask();
+    //clearSelectedTask();
     stopTimer();
     _taskElement.classList.add('selected-Task');
     selectedTask = _taskObject; 
 
-    localStorage.setItem('selectedTask', JSON.stringify(selectedTask));
+    //localStorage.setItem('selectedTask', JSON.stringify(selectedTask));
     clockEl.textContent = selectedTask.time3 + ':' + selectedTask.time2 + selectedTask.time1;
 }
 
 // returns all the tasks from local storage
-function loadAllTasks() {
+function loadActiveTasks() {
     let tasks = JSON.parse(localStorage.getItem('allTasks'));
 
     if (tasks == null)
@@ -195,34 +212,166 @@ function loadAllTasks() {
     }
 }
 
-// renders all the tasks to the page
-function rendTask() {
-    let tasks = loadAllTasks();
+function loadCompletedTasks() {
+    let completedTasks = JSON.parse(localStorage.getItem('completedTasks'));
+
+    if (completedTasks == null)
+    {
+        return [];
+    }
+    else if (Array.isArray(completedTasks))
+    {   
+        return completedTasks;
+    }
+    else
+    {
+        return [completedTasks];
+    }
+}   
+
+// renders all active tasks to the page
+function renderActiveTask() {
+    let tasks = loadActiveTasks();
     for (let i = 0; i < tasks.length; i++)
     {
         createTask(tasks[i]);
     }
 }
 
-// physically creates the task element
-function createTask(object, _taskElement) {
-    if (_taskElement == null)
+// renders all completed tasks to the page
+function renderCompletedTasks() {
+    let _completedTasks = loadCompletedTasks();
+    for (let i = 0; i < _completedTasks.length; i++)
     {
+        createCompletedTask(_completedTasks[i]);
+    }
+}
+
+function createTask(object, _taskElement) {
+    if (_taskElement == null) {
         _taskElement = document.createElement('li');
     }
-    _taskElement = document.createElement('li');
     _taskElement.textContent = object.taskName;
-    
+
     _taskElement.setAttribute("type", "button");
     _taskElement.classList.add("miniTask");
     taskParent.appendChild(_taskElement);
 
-    _taskElement.addEventListener('click', function () {
-    selectTask(object, _taskElement)});
+    const removeButton = createRemoveButton();
+    const doneButton = createDoneButton();
+
+    // Append the remove and done buttons to the task item
+    _taskElement.appendChild(removeButton);
+    _taskElement.appendChild(doneButton);
+
+    // Function to clear the selected state from all tasks and hide remove and done buttons
+    function _clearSelectedTask() {
+        const allTasks = taskParent.querySelectorAll('li');
+        allTasks.forEach(task => {
+            task.classList.remove('selected-Task');
+            task.querySelector('.remove-btn').style.display = 'none'; // Hide the remove button
+            task.querySelector('.done-btn').style.display = 'none'; // Hide the done button
+        });
+    }
+
+    function showRemoveAndDoneButtons() { 
+        if (_taskElement.classList.contains('completed-Task')) 
+        {
+            return; 
+        }
+        else
+        {
+            if (_taskElement.classList.contains('selected-Task')) 
+            {
+                _clearSelectedTask(); // Deselect the task and hide the buttons if already selected
+            } 
+            else 
+            {
+                _clearSelectedTask(); // Clear any other selections
+                _taskElement.classList.add('selected-Task');
+                removeButton.style.display = 'inline-block'; // Show the remove button for the selected task
+                doneButton.style.display = 'inline-block'; // Show the done button for the selected task
+                selectTask(object, _taskElement);
+            }
+        }
+    }
+
+    function removeTask(event) {
+        event.stopPropagation(); // Prevent the task from being reselected
+        taskParent.removeChild(_taskElement);
+
+        let tasks = JSON.parse(localStorage.getItem("allTasks"));
+        tasks = tasks.filter(task => task.taskName !== object.taskName);
+        localStorage.setItem('allTasks', JSON.stringify(tasks));
+
+        stopTimer();
+        selectedTask = null;
+        clockEl.textContent = '0:00';
+    }
+
+    function completeTask(event) {
+        event.stopPropagation(); // Prevent the task from being reselected
+        _taskElement.classList.remove('selected-Task'); // Remove the selected class
+        _taskElement.classList.remove('miniTask'); // Remove the miniTask class
+        _taskElement.removeAttribute("type", "button");
+
+        let tasks = JSON.parse(localStorage.getItem("allTasks"));
+        tasks = tasks.filter(task => task.taskName !== object.taskName);
+        localStorage.setItem('allTasks', JSON.stringify(tasks));
+
+        let existingData = localStorage.getItem('completedTasks');
+        let completedTaskData;
+    
+        if (existingData) 
+        {
+            completedTaskData = JSON.parse(existingData);
+        } 
+        else 
+        {
+            completedTaskData = [];
+        }
+    
+        completedTaskData.push(object);
+    
+        localStorage.setItem('completedTasks', JSON.stringify(completedTaskData));
+
+        createCompletedTask(object, _taskElement);
+    }    
+    
+    doneButton.addEventListener('click', completeTask);
+    removeButton.addEventListener('click', removeTask);
+    _taskElement.addEventListener('click', showRemoveAndDoneButtons);
+}
+
+function createRemoveButton() {
+    const _removeButton = document.createElement('button');
+    _removeButton.textContent = "Remove";
+    _removeButton.classList.add('remove-btn');
+    _removeButton.style.display = 'none'; // Initially hidden
+    return _removeButton;
+}
+
+function createDoneButton() {
+    const _doneButton = document.createElement('button');
+    _doneButton.textContent = "Done";
+    _doneButton.classList.add('done-btn');
+    _doneButton.style.display = 'none'; // Initially hidden
+    return _doneButton;
+}
+
+function createCompletedTask(object, _taskElement) {
+    if (_taskElement == null) {
+        _taskElement = document.createElement('li');
+    }
+    _taskElement.textContent = object.taskName;
+    _taskElement.classList.add('completed-Task'); // Add a class to indicate the task is completed
+    _taskElement.style.textDecoration = "line-through"; // Optionally strike through the text
+
+    // Move the task to the completed list
+    document.getElementById('completed').appendChild(_taskElement);
 }
 
 addTaskButton.addEventListener('click', addTask);
 timerButton.addEventListener('click', alternateTimer);
 resetTimer.addEventListener('click', resetTime);
-removeTaskButton.addEventListener('click', removeLastTask);
 
