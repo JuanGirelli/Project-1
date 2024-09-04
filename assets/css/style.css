@@ -214,7 +214,7 @@ input[type="text"] {
   background-color: #fff;
 }
 
-.selected-Task {
+.selected-Task  {
   border: 2px solid var(--color-primary);  /* Adds a border */
   background-color: var(--color-primary); /* Changes the background color */
   color: #fff; /* Changes the text color */
@@ -248,9 +248,17 @@ ol {
   text-align: left;
   word-wrap: break-word; /* Ensures long words break to the next line */
   word-break: break-all;  /* Breaks at any character to prevent overflow */
-  white-space: normal;    /* Allows the text to wrap onto the next line */
-  right: 10px; 
-  padding-left: 20px;
+  white-space: normal;   /* Allows the text to wrap onto the next line */
+}
+
+#completed {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word; 
+  word-break: break-all;
+  white-space: normal;
+  
+
 }
 
 /* ============================================= */
