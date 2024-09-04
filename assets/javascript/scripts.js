@@ -11,6 +11,7 @@ renderActiveTask();
 renderCompletedTasks();
 
 let selectedTask;
+let selectedTaskObject;
 
 let timerRunning = false;
 
@@ -40,6 +41,11 @@ function startTimer() {
 function stopTimer() {
     clearInterval(timerInstance);
     timerRunning = false;
+
+    if (selectedTask != null)
+    {
+        refreshStorage();
+    }
 }
 
 function alternateTimer() {
@@ -68,6 +74,7 @@ function resetTime(){
         selectedTask.time2 = 0;
         selectedTask.time3 = 0;
         clockEl.textContent = selectedTask.time3 + ':' + selectedTask.time2 + selectedTask.time1; 
+        refreshStorage();
     }
     else
     {
@@ -119,55 +126,19 @@ function addTask() {
 }
 
 function refreshStorage() {
+    const taskData = JSON.parse(localStorage.getItem('allTasks')) || [];
 
+    const selectedTaskName = selectedTask.taskName;
+    const itemToUpdate = taskData.find(object => object.taskName === selectedTaskName);
+
+    if (itemToUpdate) {
+        itemToUpdate.time1 = selectedTask.time1;
+        itemToUpdate.time2 = selectedTask.time2;
+        itemToUpdate.time3 = selectedTask.time3;
+    }
+
+    localStorage.setItem('allTasks', JSON.stringify(taskData));
 }
-
-/*// removes the last task from the list of tasks and updates local storage
-function removeLastTask(){
-    if (taskParent.lastChild != null)
-    {
-        let tasks = JSON.parse(localStorage.getItem("allTasks"));
-        tasks.pop();
-        localStorage.setItem('allTasks', JSON.stringify(tasks));
-        if (taskParent.lastChild.classList.contains('selected-Task'))
-        {
-            stopTimer();
-            selectedTask = null;
-            //localStorage.setItem('selectedTask', JSON.stringify(selectedTask));
-            clockEl.textContent = '0:00';
-        }
-        taskParent.removeChild(taskParent.lastChild);
-    }
-    else
-    {
-        alert('No tasks to remove');
-    }
-}
-
-// removes the selected task from the list of tasks and updates local storage
-function removeSelectedTask() {
-    if (selectedTask != null)
-    {
-        let tasks = JSON.parse(localStorage.getItem("allTasks"));
-        let index = tasks.indexOf(selectedTask);
-        index++;
-        tasks.splice(index, 1);
-        localStorage.setItem('allTasks', JSON.stringify(tasks));
-   
-        selectedTask = null;
-        stopTimer();
-
-        clockEl.textContent = '0:00';
-        
-        taskParent.removeChild(taskParent.children[index]);
-    }
-    else
-    {
-        alert('No task selected');
-    }
-    
-}*/
-
 
 // checks how many tasks there are and removes their selected task class, only called once a task is selected
 function clearSelectedTask() {
@@ -185,12 +156,10 @@ function clearSelectedTask() {
 
 // sets the selected task to the task that was clicked, updates timer accordingly
 function selectTask(_taskObject, _taskElement) {
-    //clearSelectedTask();
-    stopTimer();
-    _taskElement.classList.add('selected-Task');
     selectedTask = _taskObject; 
+    stopTimer(selectedTask);
+    _taskElement.classList.add('selected-Task');
 
-    //localStorage.setItem('selectedTask', JSON.stringify(selectedTask));
     clockEl.textContent = selectedTask.time3 + ':' + selectedTask.time2 + selectedTask.time1;
 }
 
@@ -334,7 +303,7 @@ function createTask(object, _taskElement) {
         completedTaskData.push(object);
     
         localStorage.setItem('completedTasks', JSON.stringify(completedTaskData));
-
+        resetTime();
         createCompletedTask(object, _taskElement);
     }    
     
@@ -369,6 +338,7 @@ function createCompletedTask(object, _taskElement) {
 
     // Move the task to the completed list
     document.getElementById('completed').appendChild(_taskElement);
+
 }
 
 addTaskButton.addEventListener('click', addTask);
