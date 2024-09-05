@@ -48,7 +48,7 @@ function timer(object) { timerInstance = setInterval(function () {
     selectedTask.time1++;
     if (selectedTask.time1 == 10)
     {
-        selectedTask.time2 = 0;
+        selectedTask.time1 = 0;
         selectedTask.time2++;
         if (selectedTask.time2 == 6)
         {
