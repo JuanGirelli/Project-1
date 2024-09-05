@@ -10,14 +10,14 @@
   --color-senary: #413D24;
 }
 
-.darkmode{
-  --color-primary: #3c3830;
+.darkMode{
+  --color-primary: #1f1f1f;
   --color-secondary: #dc5a15;
   --color-tertiary: #87908F;
-  --color-quaternary: #929820;
+  --color-quaternary: #1f1f1f;
   --color-quinary: #2A2D32;
   --color-senary: #413D24;
-  background-color: rgb(41, 41, 41);
+  background-color: rgb(77, 77, 77);
 }
 
 /* ============================================= */
@@ -107,6 +107,11 @@ div {
   box-shadow: 5px 6px grey;
 }
 
+.darkMode div{
+  background-color: rgb(66, 66, 66);
+  box-shadow: 5px 6px rgb(21, 21, 21);
+}
+
 /* ============================================= */
 /* =============== Aside Section =============== */
 /* ============================================= */
@@ -130,7 +135,12 @@ div {
   box-shadow: none;
   align-items: center;
   border: 3px solid var(--color-quinary);
+  background-color: white;
+}
 
+.darkMode #clock{
+  background-color: rgba(255, 255, 255, 0.235);
+  color: white;
 }
 
 #timer-console {
@@ -151,6 +161,35 @@ h2 {
   border-radius: 5px;
   color: #fff;
   text-align: center;
+}
+
+.darkMode #completedTasks{
+  background-color: rgba(255, 255, 255, 0.235);
+}
+
+.darkMode li{
+  color: white;
+}
+
+#task{
+  background-color: white;
+}
+
+.darkMode #task {
+  background-color: rgba(255, 255, 255, 0.235);
+}
+
+#toDo{
+  background-color: white;
+}
+
+.darkMode #toDo {
+  background-color: rgba(255, 255, 255, 0.235);
+}
+
+#completed{
+  position: relative;
+  left: 0.5px;
 }
 
 /* ============================================= */
@@ -271,14 +310,27 @@ footer {
 /* ============================================= */
 
 /* Dark Mode Switch */
+
+#toggle{
+  border-radius: 50px;
+  height: 50px;
+  background-color: white;
+  position: relative;
+  top: 390px;
+}
+
+.darkMode #toggle{
+  background-color: black;
+}
+
 #toggle svg:last-child{
   display: none;
 }
 
-.darkmode #toggle svg:first-child{
+.darkMode #toggle svg:first-child{
   display: none;
 }
 
-.darkmode #toggle svg:last-child{
+.darkMode #toggle svg:last-child{
   display: block;
 }
