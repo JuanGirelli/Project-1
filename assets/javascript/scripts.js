@@ -5,7 +5,34 @@ const timerButton = document.querySelector('#timer-Button');
 const taskParent = document.querySelector('#to-Do');
 const resetTimer = document.querySelector('#timer-Reset');
 const inputField = document.querySelector('#task-Input');
+let dark = localStorage.getItem('darkMode');
+const toggleMode = document.getElementById('toggle');
 
+
+const darkModeOn = () => {
+  document.body.classList.add('darkMode');
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const darkModeOff = () => {
+  document.body.classList.remove('darkMode');
+  localStorage.setItem('darkMode', null);
+}
+
+if (dark === 'enabled'){
+  darkModeOn();
+}
+
+toggleMode.addEventListener('click', () => {
+  dark = localStorage.getItem('darkMode');
+  if (dark !== 'enabled'){
+    darkModeOn();
+  }
+  else{
+    darkModeOff();
+  }
+  
+});
 
 renderActiveTask();
 renderCompletedTasks();
