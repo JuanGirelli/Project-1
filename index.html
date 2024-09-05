@@ -24,9 +24,10 @@
         <p>Manage your time and tasks !</p>
 
         <nav>
-            <a href="#">Tasks</a>
-            <a href="#">Timer</a>
-            <a href="#">Add Task</a>
+            <a href="#time">Timer</a>
+            <a href="#Completed-task">Completed Tasks</a>
+            <a href="#task">Add Task</a>
+            <a href="#to-Do">To-do</a>
         </nav>
 
     </header>
@@ -34,23 +35,26 @@
         <!-- Created to sections dividing the screen in two "aside", and "tasks" -->
         <section class="aside">
             <div id="time">
+                <h2>Timer</h2>
                 <div id="clock">0:00</div>
                 <div id="timer-console">
                     <button id="timer-Button" type="button" class="btn btn-primary">Start/Stop</button>
                     <button id="timer-Reset" type="button" class="btn btn-primary">Reset</button>
                 </div>
             </div>
+
             <div >
                 <h2>Completed Tasks</h2>
                 <div id="completedTasks">
+=======
+            <div id="Completed-task">
+                <h2>Completed Tasks</h2>
+                <div id="div-completed">
+
                     <ol id="completed"></ol>
 
                 </div>
             </div>
-        <!-- <div id="task">
-                <button id="add-Task">Add Task</button>
-                <button id="remove-Task">Remove Task</button>
-            </div> -->
         </section>
         <section class="tasks">
             <div>
@@ -59,6 +63,7 @@
                     <input type="text" id="task-Input" placeholder="Enter Task"></input>
                     <button id="add-Task">Add Task</button>
                 </div>
+
                 <div id="toDo">
                     <ol type="1" id="to-Do"></ol>  
 
@@ -69,6 +74,10 @@
                 <div>
                     <ol id="completed"></ol>--> 
 
+=======
+                <div id="div-todo" >
+                    <ol  id="to-Do"></ol>  
+
                 </div>
             </div>
         </section>
@@ -78,7 +87,7 @@
         </button>
     </main>
     <footer>
-        <P>@GeekSquad 2024</P>
+        <P> &copy; 2024 Task-Master All rights reserved. @GeekSquad 2024</P>
     </footer>
 </body>
 <script src="assets/javascript/scripts.js"></script>
