@@ -7,8 +7,26 @@ const resetTimer = document.querySelector('#timer-Reset');
 const inputField = document.querySelector('#task-Input');
 let dark = localStorage.getItem('darkMode');
 const toggleMode = document.getElementById('toggle');
-const clearButton = document.getElementById('clearTasks');
 
+const clearButton = document.getElementById('clearTasks');
+const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+const modalMessage = document.getElementById('modalMessage');
+
+renderActiveTask();
+renderCompletedTasks();
+
+let selectedTask;
+let selectedTaskObject;
+
+let timerRunning = false;
+
+let timerInstance;
+
+
+function OpenModal(_modalMessage) {
+    modalMessage.textContent = _modalMessage;
+    modal.show();
+}
 
 const darkModeOn = () => {
   document.body.classList.add('darkMode');
@@ -35,21 +53,12 @@ toggleMode.addEventListener('click', () => {
   
 });
 
-renderActiveTask();
-renderCompletedTasks();
-
-let selectedTask;
-let selectedTaskObject;
-
-let timerRunning = false;
-
-let timerInstance;
 
 function timer(object) { timerInstance = setInterval(function () {
     selectedTask.time1++;
     if (selectedTask.time1 == 10)
     {
-        selectedTask.time2 = 0;
+        selectedTask.time1 = 0;
         selectedTask.time2++;
         if (selectedTask.time2 == 6)
         {
@@ -79,7 +88,8 @@ function stopTimer() {
 function alternateTimer() {
     if (selectedTask == null)
     {
-        alert('No task selected');
+        //alert('No task selected');
+        OpenModal('No task selected');
     }
     else if (!timerRunning)
     {
@@ -106,7 +116,8 @@ function resetTime(){
     }
     else
     {
-        alert('No task selected');
+        //alert('No task selected');    
+        OpenModal('No task selected');
     }
 }
 
@@ -129,7 +140,7 @@ function addTask() {
     }
     else
     {
-        alert('Please enter a task');
+        OpenModal('Please enter a task name');     
         return;
     }
 
@@ -374,7 +385,6 @@ function createCompletedTask(object, _taskElement) {
 
     // Move the task to the completed list
     document.getElementById('completed').appendChild(_taskElement);
-
 }
 
 addTaskButton.addEventListener('click', addTask);
