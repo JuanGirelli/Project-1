@@ -172,10 +172,6 @@ h2 {
   background-color: rgba(255, 255, 255, 0.235);
 }
 
-.darkMode li{
-  color: white;
-}
-
 #task{
   background-color: white;
 }
@@ -207,7 +203,7 @@ input[type="text"] {
   border: 3px solid var(--color-quinary);
   border-radius: 10px;
 }
-#time button, #add-Task, #remove-Task {
+#time button, #add-Task, #remove-Task, #clearTasks{
   padding: 6px;
   margin: 6px;
   border: 3px solid var(--color-quinary);
@@ -218,7 +214,7 @@ input[type="text"] {
   transition: background-color 0.3s;
 }
 
-#task button:hover, #time button:hover {
+#task button:hover, #time button:hover, #clearTasks:hover{
   background-color: #fff;
   color: var(--color-quinary);
 }
@@ -270,7 +266,7 @@ input[type="text"] {
   transition: background-color 0.3s, border 0.3s; /* Adds a smooth transition effect */
 }
 
-.remove-btn, .done-btn {
+.remove-btn, .done-btn{
   display: none; /* Hide by default */ 
   margin-left: 10px;
   padding: 3px 8px;
@@ -281,7 +277,7 @@ input[type="text"] {
   cursor: pointer;
 }
 
-.remove-btn:hover, .done-btn:hover {
+.remove-btn:hover, .done-btn:hover{
   background-color: #fff;
   color: var(--color-quinary);
   border: 2px solid var(--color-quinary);

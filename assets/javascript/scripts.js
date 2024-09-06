@@ -7,6 +7,7 @@ const resetTimer = document.querySelector('#timer-Reset');
 const inputField = document.querySelector('#task-Input');
 let dark = localStorage.getItem('darkMode');
 const toggleMode = document.getElementById('toggle');
+const clearButton = document.getElementById('clearTasks');
 
 
 const darkModeOn = () => {
@@ -242,6 +243,14 @@ function renderCompletedTasks() {
         createCompletedTask(_completedTasks[i]);
     }
 }
+
+clearButton.addEventListener('click', () => {
+    const allTasks = document.getElementById('completed');
+    while (allTasks.firstChild) {
+      allTasks.removeChild(allTasks.firstChild);
+    }
+    localStorage.removeItem('completedTasks')
+  });
 
 function createTask(object, _taskElement) {
     if (_taskElement == null) {
