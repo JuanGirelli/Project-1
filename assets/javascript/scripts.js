@@ -256,6 +256,10 @@ function renderCompletedTasks() {
 
 clearButton.addEventListener('click', () => {
     const allTasks = document.getElementById('completed');
+    if (allTasks.firstChild == null) 
+        {
+            OpenModal('No tasks to clear');
+        }
     while (allTasks.firstChild) {
       allTasks.removeChild(allTasks.firstChild);
     }
