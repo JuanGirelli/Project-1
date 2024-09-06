@@ -51,6 +51,7 @@ header {
   color: #fff;
 }
 
+
 h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -102,15 +103,18 @@ main {
 
 div {
   display: flex;
+}
+
+#time, #Completed-task, #div-tasks, #toDo, #div-completed  {
+  display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 3px ;
+  padding: 3px;
   margin: 10px;
   border: 3px solid var(--color-quinary);
   border-radius: 15px;
   box-shadow: 2px 4px var(--color-quinary);
 }
-
 .darkMode div{
   background-color: rgb(66, 66, 66);
   box-shadow: 5px 6px rgb(21, 21, 21);
@@ -136,8 +140,11 @@ div {
 }
 
 #clock {
+  display: felx;
+  flex-direction: column;
   box-shadow: none;
   align-items: center;
+  border-radius: 10px;
   border: 3px solid var(--color-quinary);
   background-color: white;
 
@@ -202,6 +209,7 @@ input[type="text"] {
   border: 3px solid var(--color-quinary);
   border-radius: 10px;
 }
+
 #time button, #add-Task, #remove-Task {
   padding: 6px;
   margin: 6px;
