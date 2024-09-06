@@ -8,6 +8,24 @@ const inputField = document.querySelector('#task-Input');
 let dark = localStorage.getItem('darkMode');
 const toggleMode = document.getElementById('toggle');
 
+const clearButton = document.getElementById('clearTasks');
+const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+const modalMessage = document.getElementById('modalMessage');
+
+let selectedTask;
+let selectedTaskObject;
+
+let timerRunning = false;
+
+let timerInstance;
+
+renderActiveTask();
+renderCompletedTasks();
+
+function OpenModal(_modalMessage) {
+    modalMessage.textContent = _modalMessage;
+    modal.show();
+}
 
 const darkModeOn = () => {
   document.body.classList.add('darkMode');
@@ -34,15 +52,6 @@ toggleMode.addEventListener('click', () => {
   
 });
 
-renderActiveTask();
-renderCompletedTasks();
-
-let selectedTask;
-let selectedTaskObject;
-
-let timerRunning = false;
-
-let timerInstance;
 
 function timer(object) { timerInstance = setInterval(function () {
     selectedTask.time1++;
@@ -78,7 +87,8 @@ function stopTimer() {
 function alternateTimer() {
     if (selectedTask == null)
     {
-        alert('No task selected');
+        //alert('No task selected');
+        OpenModal('No task selected');
     }
     else if (!timerRunning)
     {
@@ -105,7 +115,8 @@ function resetTime(){
     }
     else
     {
-        alert('No task selected');
+        //alert('No task selected');    
+        OpenModal('No task selected');
     }
 }
 
@@ -128,7 +139,7 @@ function addTask() {
     }
     else
     {
-        alert('Please enter a task');
+        OpenModal('Please enter a task name');     
         return;
     }
 
@@ -242,6 +253,14 @@ function renderCompletedTasks() {
         createCompletedTask(_completedTasks[i]);
     }
 }
+
+clearButton.addEventListener('click', () => {
+    const allTasks = document.getElementById('completed');
+    while (allTasks.firstChild) {
+      allTasks.removeChild(allTasks.firstChild);
+    }
+    localStorage.removeItem('completedTasks')
+  });
 
 function createTask(object, _taskElement) {
     if (_taskElement == null) {
@@ -365,7 +384,7 @@ function createCompletedTask(object, _taskElement) {
 
     // Move the task to the completed list
     document.getElementById('completed').appendChild(_taskElement);
-
+    selectedTask = null;
 }
 
 addTaskButton.addEventListener('click', addTask);
