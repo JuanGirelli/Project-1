@@ -12,9 +12,6 @@ const clearButton = document.getElementById('clearTasks');
 const modal = new bootstrap.Modal(document.getElementById('taskModal'));
 const modalMessage = document.getElementById('modalMessage');
 
-renderActiveTask();
-renderCompletedTasks();
-
 let selectedTask;
 let selectedTaskObject;
 
@@ -22,6 +19,8 @@ let timerRunning = false;
 
 let timerInstance;
 
+renderActiveTask();
+renderCompletedTasks();
 
 function OpenModal(_modalMessage) {
     modalMessage.textContent = _modalMessage;
@@ -385,6 +384,7 @@ function createCompletedTask(object, _taskElement) {
 
     // Move the task to the completed list
     document.getElementById('completed').appendChild(_taskElement);
+    selectedTask = null;
 }
 
 addTaskButton.addEventListener('click', addTask);
