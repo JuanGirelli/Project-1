@@ -38,6 +38,7 @@ body {
   min-height: 100vh;
 }
 
+
 /* ============================================= */
 /* =============== Header Styles =============== */
 /* ============================================= */
@@ -51,6 +52,26 @@ header {
   color: #fff;
 }
 
+.container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.Title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 10px;
+}
+
+.Night-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 h1 {
   font-size: 2.5rem;
@@ -77,9 +98,8 @@ nav a {
   color: #fff;
   text-decoration: none;
   margin-inline: 90px;
-  border: 3px solid #fff;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   transition: color 0.3s;  
   margin-inline: 40px;
   width: 150px;
@@ -105,7 +125,7 @@ div {
   display: flex;
 }
 
-#time, #Completed-task, #div-tasks, #toDo, #div-completed  {
+#time, #Completed-task, #div-tasks, #toDo, #div-completed ,#tasks {
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -115,10 +135,7 @@ div {
   border-radius: 15px;
   box-shadow: 2px 4px var(--color-quinary);
 }
-.darkMode div{
-  background-color: rgb(66, 66, 66);
-  box-shadow: 5px 6px rgb(21, 21, 21);
-}
+
 
 /* ============================================= */
 /* =============== Aside Section =============== */
@@ -145,6 +162,8 @@ div {
   box-shadow: none;
   align-items: center;
   border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   border: 3px solid var(--color-quinary);
   background-color: white;
 
@@ -152,7 +171,7 @@ div {
 
 .darkMode #clock{
   background-color: rgba(255, 255, 255, 0.235);
-  color: white;
+  color:var(--color-quinary);
 }
 
 #timer-console {
@@ -160,19 +179,21 @@ div {
   flex-direction: row;
   justify-content: space-evenly;
   box-shadow: none;
-  margin: 0;
+  margin: 3PX;
   border: none;
 }
 
 h2 {
   font-size: 1.5rem;
   padding: 10px;
+  margin-bottom: 20px;
   background-color: var(--color-quinary);
   border: 3px solid var(--color-quinary);
   box-shadow: 1px 2px var(--color-quinary);
   border-radius: 10px;
   color: #fff;
   text-align: center;
+
 }
 
 .darkMode #completedTasks{
@@ -309,17 +330,28 @@ ol {
   left: 0.5px;
 }
 
+#div-clearbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ============================================= */
 /* =============== Footer Section ============== */
 /* ============================================= */
 footer {
   width: 100%;
-  padding: 20px;
+  padding: 15px; /* Reduce padding to make the footer smaller */
   text-align: center;
   background: var(--color-primary);
   color: #fff;
-  margin-top: auto;
+  font-size: 0.9rem; /* Adjust font size to make it more compact */
   position: inherit;
+}
+
+footer p {
+  margin: 0; /* Remove default margins around the text */
+  line-height: 1.2; /* Tighten line height for more compact text */
 }
 
 /* ============================================= */
@@ -329,20 +361,19 @@ footer {
 /* Dark Mode Switch */
 
 #toggle{
+  display: flex;
+  align-items: center;
   border-radius: 50px;
   height: 50px;
-  background-color: white;
-  position: relative;
-  top: 390px;
+  background-color: #fff;
 }
 
-.darkMode #toggle{
-  background-color: black;
-}
+
 
 #toggle svg:last-child{
   display: none;
 }
+
 
 .darkMode #toggle svg:first-child{
   display: none;
@@ -351,6 +382,14 @@ footer {
 .darkMode #toggle svg:last-child{
   display: block;
 }
+
+
+#toggle:hover{
+  background-color: var(--color-primary);
+}
+
+
+
 
 /* ============================================= */
 /* =============== Mobile Styles =============== */
@@ -378,9 +417,11 @@ footer {
     height: 40px; /* Set the desired height for all buttons */
     
   }
+
   #time button {
-    border-radius: 10px;
+    border-radius: 15px;
   }
+
   #time {
     display: flex;
     flex-direction: column;
@@ -393,8 +434,12 @@ footer {
     flex-direction: column;
     align-items: center;
     box-shadow: none;
-    margin: 0;
+ 
   
+  }
+
+  #clearTasks {
+    border-radius: 15px;
   }
 
   /* Adjust the input and button widths for better mobile usability */
@@ -417,52 +462,78 @@ footer {
 
   /* Ensure all div elements within main are properly spaced */
   div {
-      box-shadow: 1px 2px var(--color-quinary);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background-color: #fff;
-      padding: 3.5px;
-      margin: 15px;
-      border: 3px solid var(--color-quinary);
-      border-radius: 15px;
-      box-shadow: 2px 4px var(--color-quinary);
+  }
+  #time, #Completed-task, #div-tasks, #toDo, #div-completed ,#tasks {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 3px;
+    margin: 10px;
+    border: 3px solid var(--color-quinary);
+    border-radius: 15px;
   }
 
   /* Adjust the navigation bar for better spacing */
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+   
+  }
+  
   nav {
-      flex-direction: column;
-      align-items: center;
-      background-color: var(--color-primary);
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
       
   }
 
   nav a {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-direction: column;
+    border: solid 1px #fff;
     margin-inline: 10px;
     border-radius: 15px;
     margin: 5px;
-    width: 100%;
-      
+    width: 100%;  
   }
 
   /* Center and resize the header text */
+
   header h1 {
       font-size: 2rem;
   }
 
   header p {
       font-size: 1rem;
-  }
-}
 
+
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  }
+
+
+ .Title { 
+  display: flex;
+  }
+
+  .Night-day {
+    display: flex;
+    width: 100%;
+  }
+  
 /* Modal Styling */
 
 #modalMessage {
   text-align: center;
   margin: 0;
   font-size: 150%;
+
 }
