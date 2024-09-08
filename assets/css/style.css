@@ -388,7 +388,14 @@ footer p {
   background-color: var(--color-primary);
 }
 
+/* Modal Styling */
 
+#modalMessage {
+  text-align: center;
+  margin: 0;
+  font-size: 150%;
+
+}
 
 
 /* ============================================= */
@@ -529,11 +536,6 @@ footer p {
     width: 100%;
   }
   
-/* Modal Styling */
-
-#modalMessage {
-  text-align: center;
-  margin: 0;
-  font-size: 150%;
-
 }
+
+
