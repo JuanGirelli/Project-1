@@ -434,6 +434,7 @@ footer p {
       width: 100%;
      
   }
+
   .aside {
       order: 2;
       width: 100%; /* Make sure it takes up the full width */
@@ -500,7 +501,9 @@ footer p {
     border-radius: 15px;
   }
 
-  
+  #to-do {
+    padding: 1px;
+  }
 
   /* Adjust the navigation bar for better spacing */
   header {

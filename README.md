@@ -6,7 +6,7 @@
 - [User Story](#User_Story)
 - [Acceptance Criteria](#Acceptance-Criteria)
 - [Features](#Features)
-- [Installation](#installation)
+- [Deployment](#Deployment)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -24,10 +24,8 @@ The Task Management App is designed to help PC users efficiently coordinate and 
 ### Acceptance Criteria:
 
 - The user can create, edit, and delete tasks.
-- The user can assign estimated time durations to tasks.
 - The user can start and stop a timer to record the actual time spent on each task.
 - The user can easily transition between tasks with minimal interruption.
-- The app provides a summary or report of time spent on tasks, enabling the user to reflect on their time management.
 - The user can view a history of completed tasks and the time spent on each.
 - The app is intuitive and easy to navigate, with a focus on productivity and time management.
 
@@ -39,13 +37,19 @@ The Task Management App is designed to help PC users efficiently coordinate and 
 - **Time Management Insights**: Review time spent on tasks to identify areas for improvement.
 - **User-Friendly Interface**: Simple and intuitive design focused on enhancing productivity.
 
-## Installation
+  "![**Task Creation and Management**: Easily create, edit, and delete tasks.](./assets/Images/Screenshot 2024-09-09 at 5.13.47 PM.png)". 
 
-To install and run the Task Management App on your PC, follow these steps:
-1. Clone the repository: `git clone https://github.com/yourusername/task-management-app.git`
-2. Navigate to the project directory: `cd task-management-app`
-3. Install the necessary dependencies: `npm install` (or other package managers if applicable)
-4. Start the application: `npm start`
+  "![**Time Tracking**: Start and stop timers for each task to record the time spent.ks.](./assets/Images/Screenshot 2024-09-09 at 4.57.36 PM.png)". 
+
+  "![**Night Mode**](./assets/Images/assets/Images/Screenshot 2024-09-09 at 4.57.36 PM.png)". 
+
+
+
+## Deployment
+
+You can access the deployed version of the Task Management App at the following link:
+
+[Task Management App Deployment](https://juangirelli.github.io/Task-Manager/ )
 
 ## Usage
 
@@ -64,4 +68,4 @@ Contributions are not welcome.
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
 ## Contact
-For questions or suggestions, feel free to reach out to Juan Girelli at [email@example.com].
+For questions or suggestions, feel free to reach out to Juan Girelli at [Juangirelli@gmail.com].
