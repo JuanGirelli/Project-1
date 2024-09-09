@@ -538,4 +538,13 @@ footer p {
   
 }
 
+#timerStringDisplay {
+  display: flex;
+  flex-direction: row-reverse;
+  
+  element.style {
+    text-decoration-line: none;
+  }
+}
+
 
