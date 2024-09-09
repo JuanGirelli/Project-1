@@ -266,7 +266,7 @@ clearButton.addEventListener('click', () => {
     localStorage.removeItem('completedTasks')
   });
 
-function createTask(object, _taskElement) {
+function createTask(object, _taskElement) {    
     if (_taskElement == null) {
         _taskElement = document.createElement('li');
     }
@@ -303,6 +303,9 @@ function createTask(object, _taskElement) {
             if (_taskElement.classList.contains('selected-Task')) 
             {
                 _clearSelectedTask(); // Deselect the task and hide the buttons if already selected
+                stopTimer(selectedTask);
+                selectedTask = null;
+                clockEl.textContent = '0:00';
             } 
             else 
             {
@@ -333,6 +336,7 @@ function createTask(object, _taskElement) {
         _taskElement.classList.remove('selected-Task'); // Remove the selected class
         _taskElement.classList.remove('miniTask'); // Remove the miniTask class
         _taskElement.removeAttribute("type", "button");
+        let taskTimeString = object.time3 + ":" + object.time2 + object.time1;
 
         let tasks = JSON.parse(localStorage.getItem("allTasks"));
         tasks = tasks.filter(task => task.taskName !== object.taskName);
@@ -354,7 +358,7 @@ function createTask(object, _taskElement) {
     
         localStorage.setItem('completedTasks', JSON.stringify(completedTaskData));
         resetTime();
-        createCompletedTask(object, _taskElement);
+        createCompletedTask(object, _taskElement, taskTimeString);
     }    
     
     doneButton.addEventListener('click', completeTask);
@@ -378,16 +382,30 @@ function createDoneButton() {
     return _doneButton;
 }
 
-function createCompletedTask(object, _taskElement) {
+function createCompletedTask(object, _taskElement, _taskTimeString) {
     if (_taskElement == null) {
         _taskElement = document.createElement('li');
+    }
+    if (_taskTimeString == null) 
+    {
+        _taskTimeString = object.time3 + ":" + object.time2 + object.time1;
     }
     _taskElement.textContent = object.taskName;
     _taskElement.classList.add('completed-Task'); // Add a class to indicate the task is completed
     _taskElement.style.textDecoration = "line-through"; // Optionally strike through the text
 
     // Move the task to the completed list
+
+    //let taskTimeObject = document.createElement('p');
+    //taskTimeObject.textContent = taskTimeString;
+    //_taskElement.textContent = _taskElement.textContent + "-" + _taskTimeString;
+    let timerStringDisplay = document.createElement('text');
+    timerStringDisplay.textContent = _taskTimeString;
+    timerStringDisplay.style.textDecoration = "none";
+    timerStringDisplay.id = 'timerStringDisplay';
     document.getElementById('completed').appendChild(_taskElement);
+    _taskElement.appendChild(timerStringDisplay);
+
     selectedTask = null;
 }
 
