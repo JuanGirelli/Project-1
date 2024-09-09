@@ -392,7 +392,7 @@ function createCompletedTask(object, _taskElement, _taskTimeString) {
     }
     _taskElement.textContent = object.taskName;
     _taskElement.classList.add('completed-Task'); // Add a class to indicate the task is completed
-    _taskElement.style.textDecoration = "line-through"; // Optionally strike through the text
+    //_taskElement.style.textDecoration = "line-through"; // Optionally strike through the text
 
     // Move the task to the completed list
 
