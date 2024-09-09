@@ -37,7 +37,7 @@ The Task Management App is designed to help PC users efficiently coordinate and 
 - **Time Management Insights**: Review time spent on tasks to identify areas for improvement.
 - **User-Friendly Interface**: Simple and intuitive design focused on enhancing productivity.
 
-  ![**Task Creation and Management**: Easily create, edit, and delete tasks.](./assets/Images/image1.png)". 
+  ![**Task Creation and Management**: Easily create, edit, and delete tasks.](./assets/Images/image1.png)
 
   ![**Time Tracking**: Start and stop timers for each task to record the time spent.ks.](./assets/Images/image2.png)
 
