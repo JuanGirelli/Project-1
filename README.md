@@ -23,7 +23,7 @@ The Task Management App is designed to help PC users efficiently coordinate and 
 
 ### Acceptance Criteria:
 
-- The user can create, edit, and delete tasks.
+- The user can create and delete tasks.
 - The user can start and stop a timer to record the actual time spent on each task.
 - The user can easily transition between tasks with minimal interruption.
 - The user can view a history of completed tasks and the time spent on each.
@@ -31,17 +31,17 @@ The Task Management App is designed to help PC users efficiently coordinate and 
 
 ## Features
 
-- **Task Creation and Management**: Easily create, edit, and delete tasks.
+- **Task Creation and Management**: Easily create and delete tasks.
 - **Time Tracking**: Start and stop timers for each task to record the time spent.
 - **Seamless Task Transition**: Move smoothly from one task to another without disrupting workflow.
 - **Time Management Insights**: Review time spent on tasks to identify areas for improvement.
 - **User-Friendly Interface**: Simple and intuitive design focused on enhancing productivity.
 
-  "![**Task Creation and Management**: Easily create, edit, and delete tasks.](./assets/Images/Screenshot 2024-09-09 at 5.13.47 PM.png)". 
+  ![**Task Creation and Management**: Easily create, edit, and delete tasks.](./assets/Images/image1.png)". 
 
-  "![**Time Tracking**: Start and stop timers for each task to record the time spent.ks.](./assets/Images/Screenshot 2024-09-09 at 4.57.36 PM.png)". 
+  ![**Time Tracking**: Start and stop timers for each task to record the time spent.ks.](./assets/Images/image2.png)
 
-  "![**Night Mode**](./assets/Images/assets/Images/Screenshot 2024-09-09 at 4.57.36 PM.png)". 
+  ![**Night Mode**](./assets/Images/image3.png)
 
 
 
