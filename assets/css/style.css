@@ -17,7 +17,7 @@
   --color-quaternary: #1f1f1f;
   --color-quinary: #2A2D32;
   --color-senary: #413D24;
-  background-color: rgb(77, 77, 77);
+  background-color: var (--color-quinary);
 }
 
 /* ============================================= */
@@ -95,7 +95,7 @@ nav {
 }
 
 nav a {
-  color: #fff;
+  color: var(--color-qu);
   text-decoration: none;
   margin-inline: 90px;
   border-radius: 5px;
@@ -107,7 +107,7 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--color-primary);
+  color: var(--color-quinary);
   background-color: #fff;
 }
 
@@ -166,7 +166,16 @@ div {
   margin-top: 20px;
   border: 3px solid var(--color-quinary);
   background-color: white;
-
+  font-family: 'Share Tech Mono', monospace;
+  color: #ffffff;
+  text-align: center;
+  font-size: 60px;
+  color: var(--color-quinary);
+  .time {
+      letter-spacing: 0.05em;
+      font-size: 80px;
+      padding: 5px 0;
+  }
 }
 
 .darkMode #clock{
@@ -249,11 +258,7 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
   width: 40%;
-  background-color: var(--color-quinary);
-  border: 3px solid var(--color-quinary);
-  border-radius: 10px;
 }
 
 #add-Task:hover, #remove-Task:hover {
@@ -398,6 +403,14 @@ footer p {
 }
 
 
+#timerStringDisplay {
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+
+
 /* ============================================= */
 /* =============== Mobile Styles =============== */
 /* ============================================= */
@@ -415,8 +428,15 @@ footer p {
 
   }
   /* Adjust the aside section and tasks section to take full width */
-  .aside, .tasks {
+  /* Set the tasks to appear before aside on mobile */
+  .tasks {
+      order: 1;
       width: 100%;
+     
+  }
+  .aside {
+      order: 2;
+      width: 100%; /* Make sure it takes up the full width */
   }
   
   .aside button {
@@ -441,7 +461,6 @@ footer p {
     flex-direction: column;
     align-items: center;
     box-shadow: none;
- 
   
   }
 
@@ -481,21 +500,20 @@ footer p {
     border-radius: 15px;
   }
 
+  
+
   /* Adjust the navigation bar for better spacing */
   header {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-   
   }
   
   nav {
     display: flex;
     flex-direction: column;
-    align-items: center;
-   
-      
+    align-items: center; 
   }
 
   nav a {
@@ -527,7 +545,7 @@ footer p {
   }
 
 
- .Title { 
+  .Title { 
   display: flex;
   }
 
@@ -538,13 +556,6 @@ footer p {
   
 }
 
-#timerStringDisplay {
-  display: flex;
-  flex-direction: row-reverse;
-  
-  element.style {
-    text-decoration-line: none;
-  }
-}
+
 
 
